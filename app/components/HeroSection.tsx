@@ -27,10 +27,10 @@ export default function HeroSection() {
         </h1>
         
         <div className="w-full max-w-xl sm:max-w-2xl mb-8 sm:mb-10 px-2">
-          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 sm:mb-5 leading-tight">AI Assistant for Solana Phone&apos;s Seed Vault</h2>
+          <h2 className="text-xl sm:text-2xl md:text-4xl font-bold mb-3 sm:mb-5 leading-tight">AI Voice Assistant for the Solana Phone</h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-xl mx-auto leading-relaxed">
             Interact seamlessly with your Seed Vault through our innovative AI assistant,
-            specially designed for the Solana Phone.
+            designed specifically for the Solana Phone.
           </p>
         </div>
         
