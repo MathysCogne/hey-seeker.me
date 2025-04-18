@@ -7,7 +7,7 @@ export default function SocialSection() {
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">Connect with <span className="text-gradient">Hey Seeker!</span></h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-xl sm:max-w-2xl mx-auto px-2">
-            Follow our journey and join the community of seekers exploring the future of Web3
+            Join the Seekers community and follow our journey into the future of Web3
           </p>
         </div>
         
@@ -24,7 +24,7 @@ export default function SocialSection() {
               </svg>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">Twitter/X</h3>
-            <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 text-center">Get the latest updates and announcements</p>
+            <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 text-center">For the latest updates</p>
             <div className="flex items-center text-[#68d5e3] text-sm sm:text-base">
               <span className="mr-2">@hey_seekr</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -49,7 +49,7 @@ export default function SocialSection() {
               </svg>
             </div>
             <h3 className="text-xl sm:text-2xl font-bold mb-1 sm:mb-2">LinkedIn</h3>
-            <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 text-center">Follow our company and team updates</p>
+            <p className="text-sm sm:text-base text-gray-300 mb-3 sm:mb-4 text-center">For our team updates</p>
             <div className="flex items-center text-[#68d5e3] text-sm sm:text-base">
               <span className="mr-2">Hey Seeker</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

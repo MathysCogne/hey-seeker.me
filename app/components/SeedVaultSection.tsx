@@ -7,11 +7,11 @@ export default function SeedVaultSection() {
         <div className="lg:w-1/2">
           <div className="flex flex-col mb-6">
             <h2 className="text-5xl font-bold mb-2">Hey Seeker! + Seed Vault</h2>
-            <span className="text-3xl font-bold text-[#68d5e3]">The perfect integration</span>
+            <span className="text-3xl font-bold text-[#68d5e3]">The perfect harmony</span>
           </div>
           <p className="text-gray-300 mb-8">
-            Our AI assistant seamlessly integrates with the Solana Phone&apos;s Seed Vault
-            to provide a secure and smooth transaction experience.
+            Our AI Assistant seamlessly integrates with the Solana Phone&apos;s Seed Vault
+            to provide a secure and smooth experience.
           </p>
           <div className="space-y-8 mt-12">
             <div>
@@ -20,11 +20,11 @@ export default function SeedVaultSection() {
             </div>
             <div>
               <div className="text-gray-400 text-sm mb-1">SIMPLICITY</div>
-              <div className="text-xl">Transactions via voice command with tactile confirmation</div>
+              <div className="text-xl">Execute with voice commands, confirm by touch</div>
             </div>
             <div>
               <div className="text-gray-400 text-sm mb-1">EXCLUSIVITY</div>
-              <div className="text-xl">Specifically designed for the Solana ecosystem</div>
+              <div className="text-xl">Tailored for the Solana ecosystem</div>
             </div>
           </div>
         </div>

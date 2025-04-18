@@ -8,7 +8,9 @@ export default function ChatbotSection() {
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">Interact <span className="text-[#68d5e3]">naturally</span></h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-300 max-w-xl sm:max-w-2xl mx-auto px-2">
-            Hey Seeker! understands your intentions and executes your crypto commands in natural language
+            Natural language in, onchain action out — Hey Seeker! handles the rest.
+
+
           </p>
         </div>
 
