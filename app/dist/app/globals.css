@@ -1,0 +1,483 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-violet: 0, 20, 255;
+  --color-orange: 255, 120, 0;
+  --color-black: 10, 10, 10;
+  --color-white: 255, 255, 255;
+  --rotation-duration: 20s;
+  --dynamic-border-radius: 55%;
+  --intensity: 0;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: rgb(var(--color-black));
+}
+
+/* Container vidéo optimisé pour la capture */
+.video-container {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 600px; /* Format 9:16 pour TikTok/Reels */
+  background: linear-gradient(to bottom, rgba(20, 20, 30, 0.9), rgba(10, 10, 15, 0.95));
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Mode présentation pour la capture vidéo */
+.video-container.presentation-mode {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 400px;
+  height: 90vh;
+  max-height: 800px;
+  z-index: 100;
+  border-radius: 0;
+  background: linear-gradient(to bottom, rgba(20, 20, 30, 1), rgba(10, 10, 15, 1));
+}
+
+/* Indicateur d'enregistrement */
+.recording-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 6px 10px;
+  border-radius: 20px;
+  z-index: 10;
+}
+
+.recording-dot {
+  width: 12px;
+  height: 12px;
+  background-color: #ff3030;
+  border-radius: 50%;
+  animation: blink 1s infinite;
+}
+
+.recording-indicator span {
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Compte à rebours */
+.countdown {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 20;
+}
+
+.countdown span {
+  font-size: 120px;
+  color: white;
+  font-weight: 700;
+  animation: pulse-count 1s infinite;
+}
+
+@keyframes pulse-count {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+/* Barre de progression */
+.progress-bar-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  z-index: 5;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(to right, rgba(var(--color-orange), 0.8), rgba(var(--color-violet), 0.8));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+/* Contrôles en mode présentation */
+.presentation-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.control-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.control-button:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: scale(1.05);
+}
+
+.control-button.recording {
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+.control-button.recording:hover {
+  background-color: rgba(255, 0, 0, 0.8);
+}
+
+.animation-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s ease;
+  margin-top: 80px;
+}
+
+.circles-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  z-index: 2;
+}
+
+/* Effet de lueur */
+.glow-effect {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-orange), 0.2) 0%,
+    rgba(var(--color-violet), 0.1) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 1s ease;
+  filter: blur(15px);
+  z-index: 1;
+}
+
+.animation-container.active .glow-effect {
+  opacity: calc(0.3 + var(--intensity) * 0.7);
+  transform: scale(calc(1 + var(--intensity) * 0.5));
+}
+
+/* Phases d'animation pour des transitions organiques */
+.animation-container.phase-1 .glow-effect {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-orange), 0.2) 0%,
+    rgba(var(--color-violet), 0.1) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.animation-container.phase-2 .glow-effect {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-violet), 0.25) 0%,
+    rgba(var(--color-orange), 0.15) 40%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+.animation-container.phase-3 .glow-effect {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-white), 0.2) 0%,
+    rgba(var(--color-violet), 0.15) 30%,
+    rgba(var(--color-orange), 0.1) 60%,
+    rgba(0, 0, 0, 0) 80%
+  );
+}
+
+/* Formato esfera + sombra */
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  border-radius: var(--dynamic-border-radius);
+  box-shadow: 0 0 20px 10px rgba(var(--color-orange), 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+.animation-container.active .circle {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Primeira esfera rotacionando com luz laranja */
+.circle-1 {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-black), 0.0) 0%,
+    rgba(var(--color-black), 0.0) 67%,
+    rgba(var(--color-orange), 1) 73%,
+    rgba(var(--color-orange), 1) 100%
+  );
+  animation: rotateShape var(--rotation-duration) infinite linear;
+}
+
+/* Segunda esfera rotacionando com luz violeta */
+.circle-2 {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-black), 0.0) 0%,
+    rgba(var(--color-black), 0.0) 67%,
+    rgba(var(--color-violet), 1) 75%,
+    rgba(var(--color-violet), 1) 100%
+  );
+  animation: rotateShape calc(var(--rotation-duration) * 0.8) infinite linear reverse;
+}
+
+/* Terceira esfera com luz branca */
+.circle-3 {
+  background: radial-gradient(
+    circle,
+    rgba(var(--color-black), 0.0) 0%,
+    rgba(var(--color-black), 0.0) 70%,
+    rgba(var(--color-white), 1) 73%,
+    rgba(var(--color-white), 1) 100%
+  );
+  animation: rotateShape calc(var(--rotation-duration) * 1.2) infinite linear;
+}
+
+.animation-container.active .circle-1,
+.animation-container.active .circle-2,
+.animation-container.active .circle-3 {
+  animation-play-state: running;
+}
+
+.animation-container:not(.active) .circle-1,
+.animation-container:not(.active) .circle-2,
+.animation-container:not(.active) .circle-3 {
+  animation-play-state: paused;
+}
+
+/* Animation de rotation continue et fluide */
+@keyframes rotateShape {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+    border-radius: var(--dynamic-border-radius);
+  }
+  25% {
+    transform: translate(-50%, -50%) rotate(90deg) scale(calc(1 + var(--intensity) * 0.05));
+    border-radius: calc(52% - var(--intensity) * 5%) calc(48% + var(--intensity) * 3%) 50% 50%;
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(calc(1 + var(--intensity) * 0.1));
+    border-radius: calc(45% - var(--intensity) * 7%) calc(55% + var(--intensity) * 5%) 50% 50%;
+  }
+  75% {
+    transform: translate(-50%, -50%) rotate(270deg) scale(calc(1 + var(--intensity) * 0.05));
+    border-radius: calc(48% - var(--intensity) * 3%) calc(52% + var(--intensity) * 5%) 50% 50%;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1);
+    border-radius: var(--dynamic-border-radius);
+  }
+}
+
+/* Animation de respiration subtile */
+.animation-container.active {
+  animation: breathe 6s infinite ease-in-out;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(calc(1 + var(--intensity) * 0.05));
+  }
+}
+
+/* Styles pour les sous-titres style TikTok/Reels avec meilleur espacement */
+.subtitle-container {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 1rem;
+  z-index: 10;
+}
+
+.tiktok-subtitle {
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  border-radius: 16px;
+  padding: 1rem 1.5rem;
+  width: 90%;
+  max-width: 90%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.tiktok-subtitle.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.subtitle-words-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px; /* Espacement entre les mots */
+  line-height: 1.8;
+}
+
+.subtitle-word {
+  display: inline-block;
+  color: white;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+  opacity: 0.8;
+  transform: scale(1);
+  padding: 0 2px;
+}
+
+.subtitle-word.highlighted {
+  color: rgb(255, 255, 255);
+  opacity: 1;
+  transform: scale(1.1);
+  text-shadow: 0 0 10px rgba(var(--color-orange), 0.8), 0 0 20px rgba(var(--color-violet), 0.5);
+  font-weight: 700;
+}
+
+/* Responsive design optimisé pour mobile (format TikTok/Reels) */
+@media (max-width: 640px) {
+  .video-container {
+    max-width: 100%;
+    height: 80vh;
+  }
+
+  .animation-container {
+    width: 240px;
+    height: 240px;
+  }
+
+  .circles-container {
+    width: 120px;
+    height: 120px;
+  }
+
+  .circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .glow-effect {
+    width: 160px;
+    height: 160px;
+  }
+
+  .subtitle-word {
+    font-size: 1.1rem;
+  }
+
+  .subtitle-words-container {
+    gap: 8px;
+  }
+}
+
+/* Animation pour le bouton d'export */
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+button::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(45deg);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) rotate(45deg);
+  }
+  20%,
+  100% {
+    transform: translateX(100%) rotate(45deg);
+  }
+}
